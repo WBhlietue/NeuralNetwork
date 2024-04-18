@@ -112,8 +112,10 @@ class Layer():
 
         return ""
 class NeuralNetwork():
-    def __init__(self, inputSize):
+    def __init__(self, inputSize, name):
         self.lastLayerSize = inputSize
+        self.name = name
+        self.accuracy = 0
         self.layers = []
         self.losslog = []
         self.accLog = []
@@ -191,6 +193,7 @@ class NeuralNetwork():
                 self.accLog.append(accuracy)
                 self.plotX = epoch + 1
             print(f"Epoch: {epoch+1: 3.0f}, Loss: {loss:.5f}, Accuracy: {accuracy:.2f}%")
+        self.accuracy = accuracy
         if plotTr == True:
             self.ShowGraphic(range(epoches), self.losslog, self.accLog)
 
@@ -200,6 +203,8 @@ class NeuralNetwork():
             layerData.append(i.ToString())
         data = {
             "layers":layerData,
+            "name":self.name,
+            "accuracy":self.accuracy
         }
         file = open(name, "w")
         json.dump(data, file)
@@ -214,8 +219,10 @@ class NeuralNetwork():
             layer = Layer(1, 1, "")
             layer.FromString(i)
             self.layers.append(layer)
+        self.name = data["name"]
+        self.accuracy = data["accuracy"]
 
 def LoadNetwork(name):
-    nn = NeuralNetwork(1)
+    nn = NeuralNetwork(1, "")
     nn.Load(name)
     return nn
