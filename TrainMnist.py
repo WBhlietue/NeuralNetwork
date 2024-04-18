@@ -16,7 +16,7 @@ nn.AddLayer(512, "relu")
 nn.AddLayer(512, "relu")
 nn.AddLayer(10, "softmax")
 
-nn.Train(inputs=xTrain,targets=yTrain,epoches=10,decay=0.9,initLearningRate=0.01, plotTr=True)
+nn.Train(inputs=xTrain,targets=yTrain,epoches=100,decay=0.9,initLearningRate=0.01, plotTr=True)
 nn.Save("models/test.txt")
 
 
