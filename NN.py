@@ -111,6 +111,13 @@ class Layer():
         self.epsilon = s["epsilon"]
 
         return ""
+    def GetData(self):
+        w = np.copy(self.weights)
+        b = np.copy(self.bias)
+        return w, b
+    def SetData(self, data):
+        self.weights = np.copy(data[0])
+        self.bias = np.copy(data[1])
 class NeuralNetwork():
     def __init__(self, inputSize, name):
         self.lastLayerSize = inputSize
@@ -196,6 +203,17 @@ class NeuralNetwork():
         self.accuracy = accuracy
         if plotTr == True:
             self.ShowGraphic(range(epoches), self.losslog, self.accLog)
+    def GetLayers(self):
+        layer = []
+        for i in self.layers:
+            layer.append(i.GetData())
+        return layer
+    def SetLayers(self, layers):
+        for i in range(len(layers)):
+            self.layers[i].SetData(layers[i])
+            
+
+
 
     def Save(self, name):
         layerData = []
