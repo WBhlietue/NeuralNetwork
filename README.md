@@ -1,7 +1,10 @@
 # for testing purpose
-1. install tensorflow<br>
+1. install tensorflow and numpy<br>
         ```
         pip install tensorflow
+        ```<br>
+        ```
+        pip install numpy
         ```
 2. Start train<br>
    You can choose start new model or use current trained model<br> ```models/test.txt```<br>
@@ -14,8 +17,6 @@
    The result is graphic is <br><br>
    ![image info](./graphic.png)<br><br>
 
-   ```
-   python LoadMnist.py
 3. Check the result<br>
    After training, you can check the result by using following command:<br>
    ```
